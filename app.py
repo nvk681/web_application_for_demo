@@ -9,9 +9,10 @@ def hello():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
+        form_data = request.form
+        if form_data['username'] != 'admin' or form_data['password'] != 'password':
+            return render_template('403.html'), 403
         else:
-            return redirect(url_for('home'))
+            return render_template("home.html"), 200
     return render_template('login.html', error=error)
 
