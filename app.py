@@ -22,6 +22,28 @@ def forms():
 
 @app.route('/sql', methods=["GET", 'POST'])
 def sql():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    if request.args.get('mysql'):
+        return '<p>failure in MySqlClient</p>', 200
+    if request.args.get('mssql'):
+        return '<p>Failed to save the data SqlException</p>', 200
+    if request.args.get('java'):
+        return '<p>failure in saving data java.sql.SQLException</p>', 200
+    if request.args.get('postgresql'):
+        return '<p>failure in Npgsql.</p>', 200
+    if request.args.get('db2'):
+        return '<p>failure in due to  \[IBM]</p>', 200
+    if request.args.get('interbase'):
+        return '<p>failure in Dynamic SQL Error</p>', 200
+    if request.args.get('sybase'):
+        return '<p>failure in Sybase message:</p>', 200
+    if request.args.get('oracle'):
+        return '<p>failure in saving the data due to Oracle error</p>', 200
+    if request.args.get('sqlite'):
+        return '<p>failure in saving the data due to SQLITE_ERROR</p>', 200
+    if first_name and last_name:
+        return '<p> Saved the data', 200
     return render_template('sql.html'), 200
 
 @app.route('/html', methods=["GET", 'POST'])

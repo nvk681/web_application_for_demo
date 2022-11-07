@@ -1,17 +1,25 @@
 <html>
   <head>
-    <title>Fill all the forms below</title>
+    <title>click the links to activate your account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <div class="container">
-        <a href="{{url_for('sql')}}">SQL Injection</a><br>
-        <a href="{{url_for('html')}}">HTML Injection</a><br>
-        <a href="{{url_for('php')}}">PHP Injection</a><br>
-        <a href="{{url_for('ldap')}}">LDAP Injection</a><br>
-        <a href="{{url_for('rfi')}}">RFI Injection</a><br>
-        <a href="{{url_for('xpath')}}">Xpath Injection</a><br>
-        <a href="{{url_for('xss')}}">XSS Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&mysql=b">MySQL Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&mssql=b">MSSQL-Based Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&java=b">Java.SQL Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&postgresql=b">PostgreSQL Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&db2=b">DB2 Injection Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&interbase=b">Interbase Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&sybase=b">Sybase Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&oracle=b">Oracle Injection</a><br>
+        <a href="{{url_for('sql')}}?first_name=First&last_name=Last&sqlite=b">SQLite Injection</a><br>
+        <a href="{{url_for('html')}}?first_name=First&last_name=Last">HTML Injection</a><br>
+        <a href="{{url_for('php')}}?first_name=First&last_name=Last">PHP Injection</a><br>
+        <a href="{{url_for('ldap')}}?first_name=First&last_name=Last">LDAP Injection</a><br>
+        <a href="{{url_for('rfi')}}?first_name=First&last_name=Last">RFI Injection</a><br>
+        <a href="{{url_for('xpath')}}?first_name=First&last_name=Last">Xpath Injection</a><br>
+        <a href="{{url_for('xss')}}?first_name=First&last_name=Last">XSS Injection</a><br>
     </div>
   </body>
 </html>
