@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
+import re
 
 @app.route('/')
 def hello():
@@ -48,24 +49,58 @@ def sql():
 
 @app.route('/html', methods=["GET", 'POST'])
 def html():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    if first_name and last_name:
+        return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>'
     return render_template('html.html'), 200
 
 @app.route('/php', methods=["GET", 'POST'])
 def php():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    if '1;phpinfo()' in [first_name, last_name]:
+        return '<title>phpinfo[()]</title><h1 class="p">PHP Version (1.12)</h1>', 200
+    if first_name and last_name:
+        return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>', 200
     return render_template('php.html'), 200
 
 @app.route('/ldap', methods=["GET", 'POST'])
 def ldap():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('')
+    if "(*)*)" in [first_name, last_name]:
+        return 'Request failed due to IPWorksASP.LDAP ', 200
+    if first_name and last_name:
+        return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>', 200
     return render_template('ldap.html'), 200
 
 @app.route('/rfi', methods=["GET", 'POST'])
 def rfi():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    if re.search('boot.ini', first_name) or re.search('boot.ini', first_name):
+        return 'Request failed due to root:/root:/bin/bash|default=multi([0])disk([0])rdisk([0])partition([1])\\WINDOWS ', 200
+    if first_name and last_name:
+        return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>', 200
     return render_template('rfi.html'), 200
 
 @app.route('/xpath', methods=["GET", 'POST'])
 def xpath():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    if re.search('@*', first_name) or re.search('@*', first_name):
+        return 'Request failed due to XPathException ', 200
+    if first_name and last_name:
+        return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>', 200
     return render_template('xpath.html'), 200
 
 @app.route('/xss', methods=["GET", 'POST'])
 def xss():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    if re.search('javascript:alert(xss)', first_name) or re.search('javascript:alert(xss)', first_name):
+        return 'Request failed due to javascript:alert(xss) ', 200
+    if first_name and last_name:
+        return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>', 200
     return render_template('xss.html'), 200
