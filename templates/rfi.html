@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Please enter details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Enter you first and last name</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="First name" name="first_name" value="{{
+          request.form.first_name }}">
+         <input type="text" placeholder="Last name" name="last_name" value="{{
+          request.form.last_name }}">
+        <input class="btn btn-default" type="submit" value="submit">
+      </form>
+    </div>
+  </body>
+</html>
