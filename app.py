@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, make_response
 app = Flask(__name__)
 import re
 
@@ -104,3 +104,29 @@ def xss():
     if first_name and last_name:
         return '<p>Values saved first name: ' +first_name+' last name: '+ last_name +'</p>', 200
     return render_template('xss.html'), 200
+
+@app.route('/headers', methods=["GET"])
+def headers():
+    resp = make_response(render_template("headers.html"))
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers["Host-Header"] = '*'
+    resp.headers["Liferay-Portal"] = '*'
+    resp.headers["Powered-By"] = '*'
+    resp.headers["Product"] = '*'
+    resp.headers["Server"] = '*'
+    resp.headers["SourceMap"] = '*'
+    resp.headers["X-AspNet-Version"] = '*'
+    resp.headers["X-AspNetMvc-Version"] = '*'
+    resp.headers["X-CF-Powered-By"] = '*'
+    resp.headers["X-CMS"] = '*'
+    resp.headers["X-Content-Encoded-By"] = '*'
+    resp.headers["X-Envoy-Upstream-Service-Time"] = '*'
+    resp.headers["Cache-Control"] = "no-store, max-age=0"
+    resp.headers["Content-Security-Policy"] = "default-src 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+    resp.headers["Cross-Origin-Embedder-Policy"] = "require-corp"
+    resp.headers["Cross-Origin-Opener-Policy"] = "*"
+    resp.headers["Cross-Origin-Resource-Policy"] = "*"
+    resp.headers["Permissions-Policy"] = "accelerometer=(),ambient-light-sensor=(),autoplay=(),battery=(),camera=(),display-capture=(),document-domain=(),encrypted-media=(),fullscreen=(),gamepad=(),geolocation=(),gyroscope=(),layout-animations=(self),legacy-image-formats=(self),magnetometer=(),microphone=(),midi=(),oversized-images=(self),payment=(),picture-in-picture=(),publickey-credentials-get=(),speaker-selection=(),sync-xhr=(self),unoptimized-images=(self),unsized-media=(self),usb=(),screen-wake-lock=(),web-share=(),xr-spatial-tracking=()"
+    resp.headers["Pragma"] = "no-cache"
+    
+    return resp
